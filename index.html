@@ -44,6 +44,7 @@ header{
     align-items:center;
     min-height:180px;
 }
+
 #zh{
     min-height:50px;
     margin-bottom:10px;
@@ -51,6 +52,7 @@ header{
     font-weight:normal;
     background: transparent;
 }
+
 #en{
     background: rgba(0,0,0,0.3);
     padding:10px;
@@ -58,12 +60,14 @@ header{
     font-size:36px;
     min-height:50px;
 }
+
 .answer{
     margin-top:20px;
     display:flex;
     gap:12px;
     min-height:80px;
 }
+
 .answer-slot{
     width:80px;
     height:80px;
@@ -74,6 +78,7 @@ header{
     justify-content:center;
     align-items:center;
 }
+
 .letter-box{
     width:80px;
     height:80px;
@@ -88,6 +93,7 @@ header{
     justify-content:center;
     align-items:center;
 }
+
 .first-letter-box{
     width:85px;
     height:85px;
@@ -101,21 +107,24 @@ header{
     justify-content:center;
     align-items:center;
 }
+
 .letters{
     margin-top:30px;
     width:700px;
     display:flex;
     flex-wrap:wrap;
     gap:15px;
-    justify-content:center;  
+    justify-content:center;
     min-height:100px;
 }
+
 .result{
     min-height:50px;
     margin-top:20px;
     font-size:32px;
     line-height:1.5;
 }
+
 .next-btn{
     margin-top:30px;
     padding:10px 24px;
@@ -126,12 +135,14 @@ header{
     min-height:50px;
     visibility:hidden;
 }
+
 .progress-container{
     height:20px;
     background:rgba(255,255,255,0.3);
     margin:20px;
     display:none;
 }
+
 .progress-bar{
     height:100%;
     width:100%;
@@ -157,6 +168,7 @@ header{
     text-align: center;
     z-index:3;
 }
+
 #logo {
     max-width:800px;
     width:65%;
@@ -203,8 +215,10 @@ header{
     font-size:40px;
     font-weight:bold;
     color:#5f2dbd;
-    margin-right:10px; /* 與按鈕間距 */
+    margin-right:10px;
+    /* 與按鈕間距 */
 }
+
 .mode-btn{
     padding:20px 60px;
     font-size:36px;
@@ -215,29 +229,28 @@ header{
     color:#5f2dbd;
     font-weight:bold;
     width:170px;
-    text-align:center; 
-    display:flex;           
-    justify-content:center; 
-    align-items:center;     
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
+
 .mode-btn.selected{
     background:#c2b5b5aa;
 }
 </style>
 </head>
 <body>
-
 <div id="start-screen">
     <!-- Logo -->
     <div id="logo-container">
         <img src="Meanzzle.png" alt="Meanzzle Logo" id="logo">
     </div>
-
     <button class="start-btn" onclick="startGame()">Start</button>
-    
     <div class="mode-section">
         <div class="mode-container">
-            <div class="mode-title">Mode:</div> <!-- 冒號加上 -->
+            <div class="mode-title">Mode:</div>
+            <!-- 冒號加上 -->
             <button class="mode-btn" id="simple-btn" onclick="selectMode('simple')">Simple</button>
             <button class="mode-btn" id="hard-btn" onclick="selectMode('hard')">Hard</button>
         </div>
@@ -245,48 +258,48 @@ header{
 </div>
 
 <header id="game-header">
-<div class="status">❤️ <span id="lives">3</span></div>
-<div class="status">Score: <span id="score">0</span> / 100</div>
+    <div class="status">❤️ <span id="lives">3</span></div>
+    <div class="status">Score: <span id="score">0</span> / 100</div>
 </header>
 
 <div class="main">
-<div class="definition" id="definition">
-    <div id="zh"></div>
-    <div id="en"></div>
-</div>
-<div class="answer" id="answer"></div>
-<div class="letters" id="letters"></div>
-<div class="result" id="result"></div>
-<button class="next-btn" id="nextBtn" onclick="startGame()">Next</button>
+    <div class="definition" id="definition">
+        <div id="zh"></div>
+        <div id="en"></div>
+    </div>
+    <div class="answer" id="answer"></div>
+    <div class="letters" id="letters"></div>
+    <div class="result" id="result"></div>
+    <button class="next-btn" id="nextBtn" onclick="startGame()">Next</button>
 </div>
 
 <div class="progress-container" id="progress-container">
-<div class="progress-bar" id="progress"></div>
+    <div class="progress-bar" id="progress"></div>
 </div>
 
 <script>
 // ---------- JavaScript 保持不變 ----------
 let words = [
-{word:"capture",meaning:"To catch or take control of something.",zh:"抓住或控制某物。",zhShort:"捕捉"},
-{word:"victory",meaning:"Success in a struggle or contest.",zh:"在鬥爭或比賽中的成功。",zhShort:"勝利"},
-{word:"expand",meaning:"To increase in size, number, or importance.",zh:"在尺寸、數量或重要性上增長。",zhShort:"擴展"},
-{word:"rescue",meaning:"To save from danger or harm.",zh:"從危險或傷害中救出。",zhShort:"救援"},
-{word:"explore",meaning:"To travel through an area to learn about it.",zh:"探索某個地方以了解它。",zhShort:"探索"},
-{word:"mystery",meaning:"Something difficult to understand or explain.",zh:"難以理解或解釋的事物。",zhShort:"神秘"},
-{word:"courage",meaning:"The ability to face fear or difficulty.",zh:"面對恐懼或困難的能力。",zhShort:"勇氣"},
-{word:"wisdom",meaning:"The ability to make good judgments.",zh:"做出正確判斷的能力。",zhShort:"智慧"},
-{word:"brilliant",meaning:"Very bright or clever.",zh:"非常明亮或聰明。",zhShort:"才華洋溢"},
-{word:"persevere",meaning:"To continue despite difficulties.",zh:"儘管困難仍堅持下去。",zhShort:"堅持"},
-{word:"reflect",meaning:"To think deeply or carefully about something.",zh:"仔細或深刻地思考某事。",zhShort:"反思"},
-{word:"resolve",meaning:"To make a firm decision.",zh:"做出堅定的決定。",zhShort:"決心"},
-{word:"discover",meaning:"To find something previously unknown.",zh:"發現之前未知的事物。",zhShort:"發現"},
-{word:"protect",meaning:"To keep safe from harm.",zh:"保護免受傷害。",zhShort:"保護"},
-{word:"support",meaning:"To give assistance or encouragement.",zh:"提供幫助或鼓勵。",zhShort:"支持"},
-{word:"imagine",meaning:"To form a mental picture of something.",zh:"在腦中形成某物的畫面。",zhShort:"想像"},
-{word:"freedom",meaning:"The power to act or think without restriction.",zh:"不受限制地行動或思考的權力。",zhShort:"自由"},
-{word:"challenge",meaning:"A task that tests ability or skill.",zh:"考驗能力或技巧的任務。",zhShort:"挑戰"},
-{word:"brave",meaning:"Ready to face and endure danger or pain.",zh:"準備面對和承受危險或痛苦。",zhShort:"勇敢的"},
-{word:"journey",meaning:"An act of traveling from one place to another.",zh:"從一個地方移動到另一個地方。",zhShort:"旅程"}
+    {word:"capture",meaning:"To catch or take control of something.",zh:"抓住或控制某物。",zhShort:"捕捉"},
+    {word:"victory",meaning:"Success in a struggle or contest.",zh:"在鬥爭或比賽中的成功。",zhShort:"勝利"},
+    {word:"expand",meaning:"To increase in size, number, or importance.",zh:"在尺寸、數量或重要性上增長。",zhShort:"擴展"},
+    {word:"rescue",meaning:"To save from danger or harm.",zh:"從危險或傷害中救出。",zhShort:"救援"},
+    {word:"explore",meaning:"To travel through an area to learn about it.",zh:"探索某個地方以了解它。",zhShort:"探索"},
+    {word:"mystery",meaning:"Something difficult to understand or explain.",zh:"難以理解或解釋的事物。",zhShort:"神秘"},
+    {word:"courage",meaning:"The ability to face fear or difficulty.",zh:"面對恐懼或困難的能力。",zhShort:"勇氣"},
+    {word:"wisdom",meaning:"The ability to make good judgments.",zh:"做出正確判斷的能力。",zhShort:"智慧"},
+    {word:"brilliant",meaning:"Very bright or clever.",zh:"非常明亮或聰明。",zhShort:"才華洋溢"},
+    {word:"persevere",meaning:"To continue despite difficulties.",zh:"儘管困難仍堅持下去。",zhShort:"堅持"},
+    {word:"reflect",meaning:"To think deeply or carefully about something.",zh:"仔細或深刻地思考某事。",zhShort:"反思"},
+    {word:"resolve",meaning:"To make a firm decision.",zh:"做出堅定的決定。",zhShort:"決心"},
+    {word:"discover",meaning:"To find something previously unknown.",zh:"發現之前未知的事物。",zhShort:"發現"},
+    {word:"protect",meaning:"To keep safe from harm.",zh:"保護免受傷害。",zhShort:"保護"},
+    {word:"support",meaning:"To give assistance or encouragement.",zh:"提供幫助或鼓勵。",zhShort:"支持"},
+    {word:"imagine",meaning:"To form a mental picture of something.",zh:"在腦中形成某物的畫面。",zhShort:"想像"},
+    {word:"freedom",meaning:"The power to act or think without restriction.",zh:"不受限制地行動或思考的權力。",zhShort:"自由"},
+    {word:"challenge",meaning:"A task that tests ability or skill.",zh:"考驗能力或技巧的任務。",zhShort:"挑戰"},
+    {word:"brave",meaning:"Ready to face and endure danger or pain.",zh:"準備面對和承受危險或痛苦。",zhShort:"勇敢的"},
+    {word:"journey",meaning:"An act of traveling from one place to another.",zh:"從一個地方移動到另一個地方。",zhShort:"旅程"}
 ];
 
 let unusedWords=[...words], currentWord, score=0, lives=3, animationId, startTime, timeLimit, answered=false, currentMode='simple';
@@ -323,7 +336,11 @@ function startGame(){
     document.getElementById("start-screen").style.display='none';
     document.getElementById("game-header").style.display='flex';
     document.getElementById("progress-container").style.display='block';
-    if(unusedWords.length===0 || lives<=0){alert("Game Over! Your Score: "+score); location.reload(); return;}
+    if(unusedWords.length===0 || lives<=0){
+        alert("Game Over! Your Score: "+score);
+        location.reload();
+        return;
+    }
     answered=false;
     cancelAnimationFrame(animationId);
     document.getElementById("result").innerHTML="";
@@ -357,7 +374,11 @@ function placeLetter(letterDiv){
     for(let slot of slots){
         if(!slot.firstChild){
             let clone=letterDiv.cloneNode(true);
-            clone.onclick=()=>{if(answered) return; clone.remove(); letterDiv.style.visibility="visible";};
+            clone.onclick=()=>{
+                if(answered) return;
+                clone.remove();
+                letterDiv.style.visibility="visible";
+            };
             slot.appendChild(clone);
             letterDiv.style.visibility="hidden";
             break;
@@ -389,7 +410,8 @@ function updateTimer(timestamp){
 function showResult(correct){
     answered=true;
     cancelAnimationFrame(animationId);
-    if(!correct) lives--; if(correct) score+=5;
+    if(!correct) lives--;
+    if(correct) score+=5;
     document.getElementById("lives").innerText=lives;
     document.getElementById("score").innerText=score;
     document.getElementById("zh").innerText=currentWord.zh;
@@ -401,7 +423,6 @@ function showResult(correct){
 }
 
 selectMode('simple');
-
 </script>
 </body>
 </html>
