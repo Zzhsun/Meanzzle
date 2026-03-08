@@ -1,32 +1,25 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meanzzle</title>
-<style>
-body{
+body {
     margin:0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #5f2dbd, #1a1f60);
     color:white;
     display:flex;
     flex-direction:column;
-    height:100vh;
+    min-height:100vh;
 }
 
 /* header 遊戲開始前隱藏 */
-header{
+header {
     display:flex;
     justify-content:space-between;
-    padding:20px 40px;
+    padding:20px 5%;
     font-size:36px;
     display:none;
 }
-.status{font-weight:bold;}
+.status {font-weight:bold;}
 
 /* 主遊戲區 */
-.main{
+.main {
     flex:1;
     display:flex;
     flex-direction:column;
@@ -36,37 +29,39 @@ header{
     padding:20px;
 }
 
-.definition{
-    max-width:1000px;
+.definition {
+    max-width:90%;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     min-height:180px;
 }
-#zh{
+#zh {
     min-height:50px;
     margin-bottom:10px;
-    font-size:36px;
+    font-size:calc(5vw + 10px);
     font-weight:normal;
     background: transparent;
 }
-#en{
+#en {
     background: rgba(0,0,0,0.3);
     padding:10px;
     border-radius:8px;
-    font-size:36px;
+    font-size:calc(4vw + 8px);
     min-height:50px;
 }
-.answer{
+.answer {
     margin-top:20px;
     display:flex;
-    gap:12px;
+    gap:2%;
+    flex-wrap:wrap;
+    justify-content:center;
     min-height:80px;
 }
-.answer-slot{
-    width:80px;
-    height:80px;
+.answer-slot {
+    width:12vw;
+    height:12vw;
     font-weight:bold;
     border:3px dashed white;
     border-radius:12px;
@@ -74,11 +69,11 @@ header{
     justify-content:center;
     align-items:center;
 }
-.letter-box{
-    width:80px;
-    height:80px;
+.letter-box, .first-letter-box {
+    width:12vw;
+    height:12vw;
     font-weight:bold;
-    font-size:36px;
+    font-size:calc(4vw + 8px);
     border:none;
     border-radius:12px;
     cursor:pointer;
@@ -88,58 +83,35 @@ header{
     justify-content:center;
     align-items:center;
 }
-.first-letter-box{
-    width:85px;
-    height:85px;
-    font-weight:bold;
-    font-size:36px;
-    border:none;
-    border-radius:12px;
-    background:white;
-    color:#5f2dbd;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-.letters{
+.letters {
     margin-top:30px;
-    width:700px;
+    width:90%;
+    max-width:700px;
     display:flex;
     flex-wrap:wrap;
-    gap:15px;
+    gap:2%;
     justify-content:center;  
     min-height:100px;
 }
-.result{
+.result {
     min-height:50px;
     margin-top:20px;
-    font-size:32px;
+    font-size:calc(4vw + 8px);
     line-height:1.5;
 }
-.next-btn{
+.next-btn {
     margin-top:30px;
-    padding:10px 24px;
-    font-size:32px;
+    padding:5px 10px;
+    font-size:calc(4vw + 10px);
     border:none;
     border-radius:8px;
     cursor:pointer;
     min-height:50px;
     visibility:hidden;
 }
-.progress-container{
-    height:20px;
-    background:rgba(255,255,255,0.3);
-    margin:20px;
-    display:none;
-}
-.progress-bar{
-    height:100%;
-    width:100%;
-    background:#00CC00;
-}
 
 /* 開始畫面 */
-#start-screen{
+#start-screen {
     position:absolute;
     top:0;
     left:0;
@@ -158,19 +130,19 @@ header{
     z-index:3;
 }
 #logo {
-    max-width:800px;
-    width:65%;
+    max-width:80%;
+    width:auto;
     height:auto;
 }
 
-/* Start 按鈕固定正中 */
-.start-btn{
+/* Start 按鈕 */
+.start-btn {
     position:absolute;
     top:65%;
     left:50%;
     transform: translate(-50%, -50%);
-    padding:20px 50px;
-    font-size:100px;
+    padding:5vw 10vw;
+    font-size:8vw;
     border:none;
     border-radius:12px;
     cursor:pointer;
@@ -181,228 +153,50 @@ header{
 }
 
 /* Mode 放在 Start 下方 */
-.mode-section{
+.mode-section {
     position:absolute;
     top:80%;
-    left:46.5%;
+    left:50%;
     transform: translateX(-50%);
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:20px;
+    gap:2vw;
     z-index:1;
 }
-
-.mode-container{
+.mode-container {
     display:flex;
-    gap:20px;
+    gap:2vw;
     align-items:center;
 }
-
-.mode-title{
-    font-size:40px;
+.mode-title {
+    font-size:5vw;
     font-weight:bold;
     color:#5f2dbd;
-    margin-right:10px; /* 與按鈕間距 */
+    margin-right:10px;
 }
-.mode-btn{
-    padding:20px 60px;
-    font-size:36px;
+.mode-btn {
+    padding:2vw 5vw;
+    font-size:4vw;
     border:none;
     border-radius:12px;
     cursor:pointer;
     background:#f9d4ed;
     color:#5f2dbd;
     font-weight:bold;
-    width:170px;
-    text-align:center; 
-    display:flex;           
-    justify-content:center; 
-    align-items:center;     
+    min-width:30vw;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
-.mode-btn.selected{
+.mode-btn.selected {
     background:#c2b5b5aa;
 }
-</style>
-</head>
-<body>
 
-<div id="start-screen">
-    <!-- Logo -->
-    <div id="logo-container">
-        <img src="Meanzzle.png" alt="Meanzzle Logo" id="logo">
-    </div>
-
-    <button class="start-btn" onclick="startGame()">Start</button>
-    
-    <div class="mode-section">
-        <div class="mode-container">
-            <div class="mode-title">Mode:</div> <!-- 冒號加上 -->
-            <button class="mode-btn" id="simple-btn" onclick="selectMode('simple')">Simple</button>
-            <button class="mode-btn" id="hard-btn" onclick="selectMode('hard')">Hard</button>
-        </div>
-    </div>
-</div>
-
-<header id="game-header">
-<div class="status">❤️ <span id="lives">3</span></div>
-<div class="status">Score: <span id="score">0</span> / 100</div>
-</header>
-
-<div class="main">
-<div class="definition" id="definition">
-    <div id="zh"></div>
-    <div id="en"></div>
-</div>
-<div class="answer" id="answer"></div>
-<div class="letters" id="letters"></div>
-<div class="result" id="result"></div>
-<button class="next-btn" id="nextBtn" onclick="startGame()">Next</button>
-</div>
-
-<div class="progress-container" id="progress-container">
-<div class="progress-bar" id="progress"></div>
-</div>
-
-<script>
-// ---------- JavaScript 保持不變 ----------
-let words = [
-{word:"capture",meaning:"To catch or take control of something.",zh:"抓住或控制某物。",zhShort:"捕捉"},
-{word:"victory",meaning:"Success in a struggle or contest.",zh:"在鬥爭或比賽中的成功。",zhShort:"勝利"},
-{word:"expand",meaning:"To increase in size, number, or importance.",zh:"在尺寸、數量或重要性上增長。",zhShort:"擴展"},
-{word:"rescue",meaning:"To save from danger or harm.",zh:"從危險或傷害中救出。",zhShort:"救援"},
-{word:"explore",meaning:"To travel through an area to learn about it.",zh:"探索某個地方以了解它。",zhShort:"探索"},
-{word:"mystery",meaning:"Something difficult to understand or explain.",zh:"難以理解或解釋的事物。",zhShort:"神秘"},
-{word:"courage",meaning:"The ability to face fear or difficulty.",zh:"面對恐懼或困難的能力。",zhShort:"勇氣"},
-{word:"wisdom",meaning:"The ability to make good judgments.",zh:"做出正確判斷的能力。",zhShort:"智慧"},
-{word:"brilliant",meaning:"Very bright or clever.",zh:"非常明亮或聰明。",zhShort:"才華洋溢"},
-{word:"persevere",meaning:"To continue despite difficulties.",zh:"儘管困難仍堅持下去。",zhShort:"堅持"},
-{word:"reflect",meaning:"To think deeply or carefully about something.",zh:"仔細或深刻地思考某事。",zhShort:"反思"},
-{word:"resolve",meaning:"To make a firm decision.",zh:"做出堅定的決定。",zhShort:"決心"},
-{word:"discover",meaning:"To find something previously unknown.",zh:"發現之前未知的事物。",zhShort:"發現"},
-{word:"protect",meaning:"To keep safe from harm.",zh:"保護免受傷害。",zhShort:"保護"},
-{word:"support",meaning:"To give assistance or encouragement.",zh:"提供幫助或鼓勵。",zhShort:"支持"},
-{word:"imagine",meaning:"To form a mental picture of something.",zh:"在腦中形成某物的畫面。",zhShort:"想像"},
-{word:"freedom",meaning:"The power to act or think without restriction.",zh:"不受限制地行動或思考的權力。",zhShort:"自由"},
-{word:"challenge",meaning:"A task that tests ability or skill.",zh:"考驗能力或技巧的任務。",zhShort:"挑戰"},
-{word:"brave",meaning:"Ready to face and endure danger or pain.",zh:"準備面對和承受危險或痛苦。",zhShort:"勇敢的"},
-{word:"journey",meaning:"An act of traveling from one place to another.",zh:"從一個地方移動到另一個地方。",zhShort:"旅程"}
-];
-
-let unusedWords=[...words], currentWord, score=0, lives=3, animationId, startTime, timeLimit, answered=false, currentMode='simple';
-
-function selectMode(mode){
-    currentMode=mode;
-    document.getElementById('simple-btn').classList.remove('selected');
-    document.getElementById('hard-btn').classList.remove('selected');
-    if(mode==='simple') document.getElementById('simple-btn').classList.add('selected');
-    else document.getElementById('hard-btn').classList.add('selected');
+/* 手機專用微調 */
+@media screen and (max-width:600px){
+    header {font-size:5vw; padding:10px;}
+    .answer-slot, .letter-box, .first-letter-box {width:14vw; height:14vw; font-size:5vw;}
+    .next-btn {font-size:5vw; padding:3vw 5vw;}
 }
-
-function shuffle(array){return array.sort(()=>Math.random()-0.5);}
-function calculateTime(length){return length<=5?10:10+(length-5);}
-
-function createSlots(){
-    const answerDiv=document.getElementById("answer");
-    answerDiv.innerHTML="";
-    const letters=currentWord.word.split("");
-    if(currentMode==='simple'){
-        let firstLetter=document.createElement("div");
-        firstLetter.className="first-letter-box";
-        firstLetter.innerText=letters[0];
-        answerDiv.appendChild(firstLetter);
-    }
-    for(let i=(currentMode==='simple'?1:0);i<letters.length;i++){
-        let slot=document.createElement("div");
-        slot.className="answer-slot";
-        answerDiv.appendChild(slot);
-    }
-}
-
-function startGame(){
-    document.getElementById("start-screen").style.display='none';
-    document.getElementById("game-header").style.display='flex';
-    document.getElementById("progress-container").style.display='block';
-    if(unusedWords.length===0 || lives<=0){alert("Game Over! Your Score: "+score); location.reload(); return;}
-    answered=false;
-    cancelAnimationFrame(animationId);
-    document.getElementById("result").innerHTML="";
-    document.getElementById("nextBtn").style.visibility="hidden";
-    currentWord=unusedWords.splice(Math.floor(Math.random()*unusedWords.length),1)[0];
-    document.getElementById("zh").innerText="";
-    document.getElementById("en").innerText=currentWord.meaning;
-    document.getElementById("letters").innerHTML="";
-    createSlots();
-    let remainingLetters=(currentMode==='simple'?currentWord.word.slice(1):currentWord.word).split("");
-    remainingLetters=shuffle(remainingLetters);
-    remainingLetters.forEach((letter,index)=>{
-        let div=document.createElement("div");
-        div.className="letter-box";
-        div.innerText=letter;
-        div.dataset.index=index;
-        div.onclick=()=>placeLetter(div);
-        document.getElementById("letters").appendChild(div);
-    });
-    timeLimit=calculateTime(currentWord.word.length);
-    startTime=null;
-    let progressBar=document.getElementById("progress");
-    progressBar.style.display="block";
-    progressBar.style.width="100%";
-    animationId=requestAnimationFrame(updateTimer);
-}
-
-function placeLetter(letterDiv){
-    if(answered) return;
-    let slots=document.querySelectorAll(".answer-slot");
-    for(let slot of slots){
-        if(!slot.firstChild){
-            let clone=letterDiv.cloneNode(true);
-            clone.onclick=()=>{if(answered) return; clone.remove(); letterDiv.style.visibility="visible";};
-            slot.appendChild(clone);
-            letterDiv.style.visibility="hidden";
-            break;
-        }
-    }
-    checkAnswer();
-}
-
-function checkAnswer(){
-    let guess="";
-    document.querySelectorAll("#answer .first-letter-box,#answer .letter-box").forEach(b=>guess+=b.innerText);
-    if(guess.length===currentWord.word.length) showResult(guess===currentWord.word);
-}
-
-function updateTimer(timestamp){
-    if(!startTime) startTime=timestamp;
-    let elapsed=(timestamp-startTime)/1000;
-    let remaining=timeLimit-elapsed;
-    if(remaining<=0 && !answered){showResult(false); return;}
-    let percent=(remaining/timeLimit)*100;
-    let progressBar=document.getElementById("progress");
-    progressBar.style.width=percent+"%";
-    if(percent>50){progressBar.style.background="#00CC00";}
-    else if(percent>16.66){progressBar.style.background="orange";}
-    else{progressBar.style.background="red";}
-    if(!answered){animationId=requestAnimationFrame(updateTimer);}
-}
-
-function showResult(correct){
-    answered=true;
-    cancelAnimationFrame(animationId);
-    if(!correct) lives--; if(correct) score+=5;
-    document.getElementById("lives").innerText=lives;
-    document.getElementById("score").innerText=score;
-    document.getElementById("zh").innerText=currentWord.zh;
-    document.getElementById("result").innerText=`Answer: ${currentWord.word} ${currentWord.zhShort}`;
-    document.getElementById("nextBtn").style.visibility="visible";
-    let progressBar=document.getElementById("progress");
-    progressBar.style.width="0%";
-    progressBar.style.display="none";
-}
-
-selectMode('simple');
-
-</script>
-</body>
-
-</html>
