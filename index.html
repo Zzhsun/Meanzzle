@@ -5,28 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meanzzle</title>
 <style>
-body {
+body{
     margin:0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #5f2dbd, #1a1f60);
     color:white;
     display:flex;
     flex-direction:column;
-    min-height:100vh;
+    height:100vh;
 }
 
 /* header 遊戲開始前隱藏 */
-header {
+header{
     display:flex;
     justify-content:space-between;
-    padding:20px 5%;
+    padding:20px 40px;
     font-size:36px;
     display:none;
 }
-.status {font-weight:bold;}
+.status{font-weight:bold;}
 
 /* 主遊戲區 */
-.main {
+.main{
     flex:1;
     display:flex;
     flex-direction:column;
@@ -36,39 +36,37 @@ header {
     padding:20px;
 }
 
-.definition {
-    max-width:90%;
+.definition{
+    max-width:1000px;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     min-height:180px;
 }
-#zh {
+#zh{
     min-height:50px;
     margin-bottom:10px;
-    font-size:calc(5vw + 10px);
+    font-size:36px;
     font-weight:normal;
     background: transparent;
 }
-#en {
+#en{
     background: rgba(0,0,0,0.3);
     padding:10px;
     border-radius:8px;
-    font-size:calc(4vw + 8px);
+    font-size:36px;
     min-height:50px;
 }
-.answer {
+.answer{
     margin-top:20px;
     display:flex;
-    gap:2%;
-    flex-wrap:wrap;
-    justify-content:center;
+    gap:12px;
     min-height:80px;
 }
-.answer-slot {
-    width:12vw;
-    height:12vw;
+.answer-slot{
+    width:80px;
+    height:80px;
     font-weight:bold;
     border:3px dashed white;
     border-radius:12px;
@@ -76,11 +74,11 @@ header {
     justify-content:center;
     align-items:center;
 }
-.letter-box, .first-letter-box {
-    width:12vw;
-    height:12vw;
+.letter-box{
+    width:80px;
+    height:80px;
     font-weight:bold;
-    font-size:calc(4vw + 8px);
+    font-size:36px;
     border:none;
     border-radius:12px;
     cursor:pointer;
@@ -90,35 +88,58 @@ header {
     justify-content:center;
     align-items:center;
 }
-.letters {
+.first-letter-box{
+    width:85px;
+    height:85px;
+    font-weight:bold;
+    font-size:36px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#5f2dbd;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.letters{
     margin-top:30px;
-    width:90%;
-    max-width:700px;
+    width:700px;
     display:flex;
     flex-wrap:wrap;
-    gap:2%;
+    gap:15px;
     justify-content:center;  
     min-height:100px;
 }
-.result {
+.result{
     min-height:50px;
     margin-top:20px;
-    font-size:calc(4vw + 8px);
+    font-size:32px;
     line-height:1.5;
 }
-.next-btn {
+.next-btn{
     margin-top:30px;
-    padding:5px 10px;
-    font-size:calc(4vw + 10px);
+    padding:10px 24px;
+    font-size:32px;
     border:none;
     border-radius:8px;
     cursor:pointer;
     min-height:50px;
     visibility:hidden;
 }
+.progress-container{
+    height:20px;
+    background:rgba(255,255,255,0.3);
+    margin:20px;
+    display:none;
+}
+.progress-bar{
+    height:100%;
+    width:100%;
+    background:#00CC00;
+}
 
 /* 開始畫面 */
-#start-screen {
+#start-screen{
     position:absolute;
     top:0;
     left:0;
@@ -137,19 +158,19 @@ header {
     z-index:3;
 }
 #logo {
-    max-width:80%;
-    width:auto;
+    max-width:800px;
+    width:65%;
     height:auto;
 }
 
-/* Start 按鈕 */
-.start-btn {
+/* Start 按鈕固定正中 */
+.start-btn{
     position:absolute;
     top:65%;
     left:50%;
     transform: translate(-50%, -50%);
-    padding:5vw 10vw;
-    font-size:8vw;
+    padding:20px 50px;
+    font-size:100px;
     border:none;
     border-radius:12px;
     cursor:pointer;
@@ -160,52 +181,47 @@ header {
 }
 
 /* Mode 放在 Start 下方 */
-.mode-section {
+.mode-section{
     position:absolute;
     top:80%;
-    left:50%;
+    left:46.5%;
     transform: translateX(-50%);
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:2vw;
+    gap:20px;
     z-index:1;
 }
-.mode-container {
+
+.mode-container{
     display:flex;
-    gap:2vw;
+    gap:20px;
     align-items:center;
 }
-.mode-title {
-    font-size:5vw;
+
+.mode-title{
+    font-size:40px;
     font-weight:bold;
     color:#5f2dbd;
-    margin-right:10px;
+    margin-right:10px; /* 與按鈕間距 */
 }
-.mode-btn {
-    padding:2vw 5vw;
-    font-size:4vw;
+.mode-btn{
+    padding:20px 60px;
+    font-size:36px;
     border:none;
     border-radius:12px;
     cursor:pointer;
     background:#f9d4ed;
     color:#5f2dbd;
     font-weight:bold;
-    min-width:30vw;
-    text-align:center;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    width:170px;
+    text-align:center; 
+    display:flex;           
+    justify-content:center; 
+    align-items:center;     
 }
-.mode-btn.selected {
+.mode-btn.selected{
     background:#c2b5b5aa;
-}
-
-/* 手機專用微調 */
-@media screen and (max-width:600px){
-    header {font-size:5vw; padding:10px;}
-    .answer-slot, .letter-box, .first-letter-box {width:14vw; height:14vw; font-size:5vw;}
-    .next-btn {font-size:5vw; padding:3vw 5vw;}
 }
 </style>
 </head>
@@ -251,17 +267,26 @@ header {
 <script>
 // ---------- JavaScript 保持不變 ----------
 let words = [
-{word:"ancient",meaning:"Existing for a very long time.",zh:"存在於非常久遠。",zhShort:"古老的"},
-{word:"journey",meaning:"An act of traveling.",zh:"從一個地方移動到另一個地方。",zhShort:"旅程"},
-{word:"fragile",meaning:"Easily broken or damaged.",zh:"容易破裂或損壞。",zhShort:"易碎的"},
-{word:"predict",meaning:"To say something will happen.",zh:"預測未來將會發生。",zhShort:"預測"},
-{word:"balance",meaning:"Elements are equal or stable.",zh:"元素處於穩定或相等的狀態。",zhShort:"平衡"},
-{word:"danger",meaning:"Possibility of harm.",zh:"可能導致受傷或損失。",zhShort:"危險"},
-{word:"energy",meaning:"Power to do work.",zh:"做功或造成改變的力量。",zhShort:"能量"},
-{word:"honest",meaning:"Always telling the truth.",zh:"總是說實話。",zhShort:"誠實的"},
-{word:"silent",meaning:"Making no sound.",zh:"完全安靜。",zhShort:"安靜的"},
-{word:"dive",meaning:"To jump into water.",zh:"頭朝下跳入水中。",zhShort:"潛水"},
-{word:"adventure",meaning:"An unusual and exciting experience.",zh:"不同尋常且刺激的經歷。",zhShort:"冒險"}
+{word:"capture",meaning:"To catch or take control of something.",zh:"抓住或控制某物。",zhShort:"捕捉"},
+{word:"victory",meaning:"Success in a struggle or contest.",zh:"在鬥爭或比賽中的成功。",zhShort:"勝利"},
+{word:"expand",meaning:"To increase in size, number, or importance.",zh:"在尺寸、數量或重要性上增長。",zhShort:"擴展"},
+{word:"rescue",meaning:"To save from danger or harm.",zh:"從危險或傷害中救出。",zhShort:"救援"},
+{word:"explore",meaning:"To travel through an area to learn about it.",zh:"探索某個地方以了解它。",zhShort:"探索"},
+{word:"mystery",meaning:"Something difficult to understand or explain.",zh:"難以理解或解釋的事物。",zhShort:"神秘"},
+{word:"courage",meaning:"The ability to face fear or difficulty.",zh:"面對恐懼或困難的能力。",zhShort:"勇氣"},
+{word:"wisdom",meaning:"The ability to make good judgments.",zh:"做出正確判斷的能力。",zhShort:"智慧"},
+{word:"brilliant",meaning:"Very bright or clever.",zh:"非常明亮或聰明。",zhShort:"才華洋溢"},
+{word:"persevere",meaning:"To continue despite difficulties.",zh:"儘管困難仍堅持下去。",zhShort:"堅持"},
+{word:"reflect",meaning:"To think deeply or carefully about something.",zh:"仔細或深刻地思考某事。",zhShort:"反思"},
+{word:"resolve",meaning:"To make a firm decision.",zh:"做出堅定的決定。",zhShort:"決心"},
+{word:"discover",meaning:"To find something previously unknown.",zh:"發現之前未知的事物。",zhShort:"發現"},
+{word:"protect",meaning:"To keep safe from harm.",zh:"保護免受傷害。",zhShort:"保護"},
+{word:"support",meaning:"To give assistance or encouragement.",zh:"提供幫助或鼓勵。",zhShort:"支持"},
+{word:"imagine",meaning:"To form a mental picture of something.",zh:"在腦中形成某物的畫面。",zhShort:"想像"},
+{word:"freedom",meaning:"The power to act or think without restriction.",zh:"不受限制地行動或思考的權力。",zhShort:"自由"},
+{word:"challenge",meaning:"A task that tests ability or skill.",zh:"考驗能力或技巧的任務。",zhShort:"挑戰"},
+{word:"brave",meaning:"Ready to face and endure danger or pain.",zh:"準備面對和承受危險或痛苦。",zhShort:"勇敢的"},
+{word:"journey",meaning:"An act of traveling from one place to another.",zh:"從一個地方移動到另一個地方。",zhShort:"旅程"}
 ];
 
 let unusedWords=[...words], currentWord, score=0, lives=3, animationId, startTime, timeLimit, answered=false, currentMode='simple';
